@@ -1,4 +1,6 @@
-﻿using Prism.Unity;
+﻿using Microsoft.Practices.Unity;
+using Prism.Unity;
+using TriangleGame.Services;
 using TriangleGame.Views;
 using Xamarin.Forms;
 
@@ -19,6 +21,9 @@ namespace TriangleGame
         {
             Container.RegisterTypeForNavigation<NavigationPage>();
             Container.RegisterTypeForNavigation<MainPage>();
+
+            Container.RegisterType(typeof(IShareService), typeof(ShareService));
+            Container.RegisterType(typeof(IGameService), typeof(GameService));
         }
     }
 }

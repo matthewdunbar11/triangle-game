@@ -4,6 +4,8 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
+using TriangleGame.Services;
 
 namespace TriangleGame.ViewModels
 {
@@ -16,9 +18,21 @@ namespace TriangleGame.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        public MainPageViewModel()
-        {
+        public ICommand CreateGame { get; set; }
 
+        readonly IShareService shareService;
+        readonly IGameService gameService;
+
+        public MainPageViewModel(IShareService shareService, IGameService gameService)
+        {
+            this.gameService = gameService;
+            this.shareService = shareService;
+            CreateGame = new DelegateCommand(OnCreateGame);
+        }
+
+        private async void OnCreateGame()
+        {
+            await shareService.ShareUrl("http://test.com/" + gameService.GetNewGameToken());
         }
 
         public void OnNavigatedFrom(NavigationParameters parameters)

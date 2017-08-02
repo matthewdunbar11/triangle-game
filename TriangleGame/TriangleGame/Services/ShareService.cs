@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Plugin.Share;
+using Plugin.Share.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +12,12 @@ namespace TriangleGame.Services
     {
         public Task<bool> ShareUrl(string url)
         {
-            throw new NotImplementedException();
+            return CrossShare.Current.Share(new ShareMessage()
+            {
+                Url = url,
+                Text = "Join the Triangle Game!",
+                Title = "The Triangle Game"
+            });
         }
     }
 }
