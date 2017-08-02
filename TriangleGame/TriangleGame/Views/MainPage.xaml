@@ -6,7 +6,7 @@
              x:Class="TriangleGame.Views.MainPage"
              Title="MainPage">
   <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-    <Button Command="{Binding CreateGame}">Start Game</Button>
+    <Button Command="{Binding CreateGame}" Text="Start Game" />
     <Label Text="{Binding Title}" />
   </StackLayout>
 </ContentPage>
